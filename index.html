@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Работа Мечты — Привлечение квалифицированных сварщиков из Бангладеш</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --accent: #2563eb;
+            --accent-light: #3b82f6;
+            --accent-bg: #eff6ff;
+            --text: #1e293b;
+            --text-secondary: #64748b;
+            --bg: #ffffff;
+            --bg-soft: #f8fafc;
+            --border: #e2e8f0;
+            --radius: 16px;
+            --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06);
+            --shadow-lg: 0 4px 6px rgba(0,0,0,0.04), 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== NAV ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: box-shadow 0.3s;
+        }
+        nav.scrolled { box-shadow: var(--shadow); }
+        nav .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+        .logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--accent); }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .mobile-menu-btn span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--text);
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 140px 0 80px;
+            text-align: center;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent-bg);
+            color: var(--accent);
+            font-size: 13px;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 100px;
+            margin-bottom: 24px;
+            letter-spacing: 0.3px;
+        }
+        .hero h1 {
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 700;
+            line-height: 1.15;
+            color: var(--primary);
+            letter-spacing: -1.5px;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent);
+            color: #fff;
+            text-decoration: none;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(37,99,235,0.3);
+        }
+        .hero-cta:hover {
+            background: var(--accent-light);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(37,99,235,0.35);
+        }
+
+        /* ===== STATS ===== */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-bottom: 100px;
+        }
+        .stat {
+            background: var(--bg);
+            padding: 32px 24px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: -1px;
+        }
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        /* ===== SECTIONS ===== */
+        section { padding: 80px 0; }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+        .section-header h2 {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.8px;
+            margin-bottom: 12px;
+        }
+        .section-header p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            max-width: 540px;
+            margin: 0 auto;
+        }
+
+        /* ===== ADVANTAGES ===== */
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .advantage-card {
+            background: var(--bg-soft);
+            border": 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+            transition: all 0.3s;
+        }
+        .advantage-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+        .advantage-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--accent-bg);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+        .advantage-card h3 {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+        .advantage-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.65;
+        }
+
+        /* ===== ROADMAP ===== */
+        .roadmap {
+            background: var(--bg-soft);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            padding: 56px 48px;
+        }
+        .roadmap-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            position: relative;
+        }
+        .roadmap-steps::before {
+            content: '';
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            right: 24px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light), #93c5fd);
+            z-index: 0;
+        }
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background: var(--accent);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0 auto 16px;
+            border: 4px solid var(--bg-soft);
+        }
+        .step h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--primary);
+        }
+        .step p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .step-duration {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent);
+            background: var(--accent-bg);
+            padding: 4px 10px;
+            border-radius: 100px;
+        }
+
+        /* ===== DOCUMENTS ===== */
+        .docs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .doc-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.25s;
+            cursor: pointer;
+        }
+        .doc-card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+        .doc-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+        .doc-icon.pdf { background: #fef2f2; }
+        .doc-icon.pptx { background: #fff7ed; }
+        .doc-icon.xlsx { background: #f0fdf4; }
+        .doc-icon.doc { background: #eff6ff; }
+        .doc-info { flex: 1; }
+        .doc-info h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+        .doc-info p {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        .doc-download {
+            color: var(--accent);
+            font-size: 13px;
+            font-weight: 600;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* ===== FAQ ===== */
+        .faq-list {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+        }
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 24px 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary);
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: inherit;
+            line-height: 1.4;
+        }
+        .faq-question::after {
+            content: '+';
+            font-size: 22px;
+            font-weight: 400;
+            color: var(--text-secondary);
+            transition: transform 0.3s;
+            flex-shrink: 0;
+            margin-left: 16px;
+        }
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.35s ease;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+        .faq-answer p {
+            padding-bottom: 24px;
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary) 0%, #16213e 100%);
+            border-radius: var(--radius);
+            padding: 64px 48px;
+            margin: 40px 0 80px;
+        }
+        .cta-section h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+        .cta-section p {
+            font-size: 16px;
+            color: #94a3b8;
+            margin-bottom: 32px;
+        }
+        .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent);
+            color: #fff;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); }
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            transition: all 0.2s;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+        .btn-secondary:hover { background: rgba(255,255,255,0.15); }
+
+        /* ===== FOOTER ===== */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 32px 0;
+            text-align: center;
+        }
+        footer p {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+            .stats { grid-template-columns: repeat(2, 1fr); }
+            .advantages-grid { grid-template-columns: 1fr; }
+            .roadmap { padding: 32px 20px; }
+            .roadmap-steps {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .roadmap-steps::before {
+                display: none;
+            }
+            .docs-grid { grid-template-columns: 1fr; }
+            .hero { padding: 110px 0 60px; }
+            .cta-section { padding: 40px 24px; }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+    <div class="container">
+        <div class="logo">Работа<span>Мечты</span></div>
+        <ul class="nav-links">
+            <li><a href="#advantages">Преимущества</a></li>
+            <li><a href="#roadmap">Как это работает</a></li>
+            <li><a href="#documents">Документы</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Контакты</a></li>
+        </ul>
+        <button class="mobile-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('show')" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-badge">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            Комплексное решение для вашего бизнеса
+        </div>
+        <h1>Привлечение квалифицированных<br>сварщиков из Бангладеша</h1>
+        <p>Полный цикл подбора, оформления и адаптации специалистов. Закрываем кадровый дефицит быстро, легально и с гарантией качества.</p>
+        <a href="#documents" class="hero-cta">
+            Скачать документы
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </a>
+    </div>
+</section>
+
+<!-- STATS -->
+<div class="container">
+    <div class="stats fade-up">
+        <div class="stat">
+            <div class="stat-number">500+</div>
+            <div class="stat-label">Специалистов привлечено</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">45</div>
+            <div class="stat-label">Дней средний срок</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">98%</div>
+            <div class="stat-label">Проходят аттестацию</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">12</div>
+            <div class="stat-label">Регионов присутствия</div>
+        </div>
+    </div>
+</div>
+
+<!-- ADVANTAGES -->
+<section id="advantages">
+    <div class="container">
+        <div class="section-header fade-up">
+            <h2>Почему выбирают нас</h2>
+            <p>Мы обеспечиваем полный цикл привлечения и сопровождения специалистов</p>
+        </div>
+        <div class="advantages-grid">
+            <div class="advantage-card fade-up">
+                <div class="advantage-icon">
+                    <svg width="24" height="24" fill="none" stroke="#2563eb" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+                </div>
+                <h3>Полная легальность</h3>
+                <p>Все разрешительные документы, визы и контракты оформляются в строгом соответствии с законодательством РФ и Бангладеша.</p>
+            </div>
+            <div class="advantage-card fade-up">
+                <div class="advantage-icon">
+                    <svg width="24" height="24" fill="none" stroke="#2563eb" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                </div>
+                <h3>Проверенные кадры</h3>
+                <p>Многоступенчатый отбор: проверка квалификации, сварочных навыков, медицинское обследование и тестирование.</p>
+            </div>
+            <div class="advantage-card fade-up">
+                <div class="advantage-icon">
+                    <svg width="24" height="24" fill="none" stroke="#2563eb" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                </div>
+                <h3>Адаптация и обучение</h3>
+                <p>Языковая подготовка, культурная адаптация, инструктаж по охране труда и российским стандартам сварки.</p>
+            </div>
+            <div class="advantage-card fade-up">
+                <div class="advantage-icon">
+                    <svg width="24" height="24" fill="none" stroke="#2563eb" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <h3>Гарантия замены</h3>
+                <p>Если специалист не подошёл в течение первых 30 дней — бесплатная замена без дополнительных затрат.</p>
+            </div>
+            <div class="advantage-card fade-up">
+                <div class="advantage-icon">
+                    <svg width="24" height="24" fill="none" stroke="#2563eb" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                </div>
+                <h3>Быстрые сроки</h3>
+                <p>От заявки до выхода специалистов на объект — в среднем 45 дней. Возможны ускоренные программы от 30 дней.</p>
+            </div>
+            <div class="advantage-card fade-up">
+                <div class="advantage-icon">
+                    <svg width="24" height="24" fill="none" stroke="#2563eb" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                </div>
+                <h3>Сопровождение 24/7</h3>
+                <p>Персональный менеджер на всех этапах. Решение любых вопросов: от логистики до бытового обустройства.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ROADMAP -->
+<section id="roadmap">
+    <div class="container">
+        <div class="section-header fade-up">
+            <h2>Как это работает</h2>
+            <p>Прозрачный процесс от заявки до выхода специалистов на ваш объект</p>
+        </div>
+        <div class="roadmap fade-up">
+            <div class="roadmap-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>Заявка и анализ</h4>
+                    <p>Определяем потребности: количество, квалификация, сроки, условия размещения</p>
+                    <span class="step-duration">1-3 дня</span>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Подбор и отбор</h4>
+                    <p>Тестирование кандидатов, проверка навыков сварки, медосмотр</p>
+                    <span class="step-duration">14-21 день</span>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Оформление</h4>
+                    <p>Визы, разрешения на работу, трудовые договоры, страхование</p>
+                    <span class="step-duration">14-21 день</span>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>Выход на объект</h4>
+                    <p>Прибытие, адаптация, инструктаж и начало работы на вашем объекте</p>
+                    <span class="step-duration">3-5 дней</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- DOCUMENTS -->
+<section id="documents" style="background: var(--bg-soft);">
+    <div class="container">
+        <div class="section-header fade-up">
+            <h2>Документы для скачивания</h2>
+            <p>Полный пакет материалов для ознакомления и принятия решения</p>
+        </div>
+        <div class="docs-grid">
+            <div class="doc-card fade-up" onclick="handleDownload('presentation')">
+                <div class="doc-icon pptx">
+                    <svg width="26" height="26" fill="none" stroke="#ea580c" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                </div>
+                <div class="doc-info">
+                    <h4>Презентация компании</h4>
+                    <p>О нас, услуги, кейсы и результаты</p>
+                </div>
+                <div class="doc-download">
+                    PDF
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                </div>
+            </div>
+            <div class="doc-card fade-up" onclick="handleDownload('contract')">
+                <div class="doc-icon doc">
+                    <svg width="26" height="26" fill="none" stroke="#2563eb" stroke-width="1.8" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+                </div>
+                <div class="doc-info">
+                    <h4>Проект договора</h4>
+                    <p>Типовой договор на оказание услуг</p>
+                </div>
+                <div class="doc-download">
+                    DOCX
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                </div>
+            </div>
+            <div class="doc-card fade-up" onclick="handleDownload('roadmap')">
+                <div class="doc-icon xlsx">
+                    <svg width="26" height="26" fill="none" stroke="#16a34a" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 3h18v18H3z"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>
+                </div>
+                <div class="doc-info">
+                    <h4>Дорожная карта проекта</h4>
+                    <p>Детальный план-график реализации</p>
+                </div>
+                <div class="doc-download">
+                    PDF
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                </div>
+            </div>
+            <div class="doc-card fade-up" onclick="handleDownload('licenses')">
+                <div class="doc-icon pdf">
+                    <svg width="26" height="26" fill="none" stroke="#dc2626" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <div class="doc-info">
+                    <h4>Лицензии и разрешения</h4>
+                    <p>Сертификаты, аккредитации, допуски</p>
+                </div>
+                <div class="doc-download">
+                    PDF
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                </div>
+            </div>
+            <div class="doc-card fade-up" onclick="handleDownload('cases')">
+                <div class="doc-icon pptx">
+                    <svg width="26" height="26" fill="none" stroke="#ea580c" stroke-width="1.8" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg>
+                </div>
+                <div class="doc-info">
+                    <h4>Кейсы и отзывы клиентов</h4>
+                    <p>Реальные примеры реализованных проектов</p>
+                </div>
+                <div class="doc-download">
+                    PDF
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                </div>
+            </div>
+            <div class="doc-card fade-up" onclick="handleDownload('faq-doc')">
+                <div class="doc-icon doc">
+                    <svg width="26" height="26" fill="none" stroke="#2563eb" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/></svg>
+                </div>
+                <div class="doc-info">
+                    <h4>Частые вопросы (FAQ)
+                    <p>Ответы на ключевые вопросы заказчиков</p>
+                </div>
+                <div class="doc-download">
+                    PDF
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+    <div class="container">
+        <div class="section-header fade-up">
+            <h2>Частые вопросы</h2>
+            <p>Ответы на вопросы, которые чаще всего задают наши клиенты</p>
+        </div>
+        <div class="faq-list fade-up">
+            <div class="faq-item">
+                <button class="faq-question">Какая квалификация у сварщиков из Бангладеша?</button>
+                <div class="faq-answer">
+                    <p>Все наши специалисты проходят многоступенчатый отбор. Они имеют опыт работы от 3 лет, владеют основными видами сварки (MMA, MIG/MAG, TIG) и проходят аттестацию в соответствии с российскими стандартами НАКС перед выходом на объект.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Сколько времени занимает весь процесс?</button>
+                <div class="faq-answer">
+                    <p>Стандартный срок от подачи заявки до выхода специалистов на объект составляет 35-45 дней. При наличии предварительно отобранных кандидатов возможна ускоренная программа от 25-30 дней.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Как решается вопрос с языковым барьером?</button>
+                <div class="faq-answer">
+                    <p>Перед отправкой специалисты проходят базовый курс русского языка с фокусом на техническую терминологию. На первых этапах работы мы обеспечиваем переводчика. Как правило, через 2-3 месяца специалисты свободно коммуницируют по рабочим вопросам.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Что включено в стоимость услуг?</button>
+                <div class="faq-answer">
+                    <p>В стоимость входит: подбор и тестирование кандидатов, оформление всех документов (визы, разрешения на работу), логистика, языковая подготовка, адаптационная программа, сопровождение менеджером. Размещение и питание оплачиваются заказчиком отдельно.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Какие гарантии вы предоставляете?</button>
+                <div class="faq-answer">
+                    <p>Мы предоставляем гарантию замены специалиста в течение 30 дней без дополнительной оплаты. Также гарантируем полное соответствие документов законодательству и берём на себя юридические риски, связанные с оформлением иностранных рабочников.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<div class="container">
+    <div class="cta-section fade-up" id="contact">
+        <h2>Готовы обсудить ваш проект?</h2>
+        <p>Свяжитесь с нами для бесплатной консультации и расчёта стоимости</p>
+        <div class="cta-buttons">
+            <a href="mailto:info@rabota-mechty.ru" class="btn-primary">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+                Написать нам
+            </a>
+            <a href="tel:+7XXXXXXXXXX" class="btn-secondary">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                Позвонить
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <p>&copy; 2026 РаботаМечты. Все права защищены. <a href="mailto:info@rabota-mechty.ru">info@rabota-mechty.ru</a></p>
+    </div>
+</footer>
+
+<!-- NOTIFICATION -->
+<div id="notification" style="
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    background: var(--primary);
+    color: #fff;
+    padding: 16px 24px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: var(--shadow-lg);
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.35s ease;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+">
+    <svg width="20" height="20" fill="none" stroke="#22c55e" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+    <span id="notification-text"></span>
+</div>
+
+<script>
+    // Scroll-based navbar shadow
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    // Fade-up animations on scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const item = btn.parentElement;
+            const wasActive = item.classList.contains('active');
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+            if (!wasActive) item.classList.add('active');
+        });
+    });
+
+    // Document download handler
+    const docs = {
+        'presentation': { name: 'Презентация компании', file: 'docs/presentation.pdf' },
+        'contract':     { name: 'Проект договора',      file: 'docs/contract.docx' },
+        'roadmap':      { name: 'Дорожная карта проекта', file: 'docs/roadmap.pdf' },
+        'licenses':     { name: 'Лицензии и разрешения', file: 'docs/licenses.pdf' },
+        'cases':        { name: 'Кейсы и отзывы',       file: 'docs/cases.pdf' },
+        'faq-doc':      { name: 'FAQ документ',          file: 'docs/faq.pdf' }
+    };
+
+    function handleDownload(docType) {
+        const doc = docs[docType];
+        if (!doc) return;
+        showNotification('Загрузка: ' + doc.name);
+        const a = document.createElement('a');
+        a.href = doc.file;
+        a.download = '';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }
+
+    function showNotification(text) {
+        const el = document.getElementById('notification');
+        document.getElementById('notification-text').textContent = text;
+        el.style.transform = 'translateY(0)';
+        el.style.opacity = '1';
+        setTimeout(() => {
+            el.style.transform = 'translateY(100px)';
+            el.style.opacity = '0';
+        }, 3000);
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
